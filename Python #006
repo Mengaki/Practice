@@ -1,0 +1,7 @@
+file = open("sample.txt", "r")
+content = file.read()
+file.close()
+
+output = open("output.txt", "w")
+output.write(content)
+output.close()
