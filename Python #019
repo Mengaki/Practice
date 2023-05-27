@@ -1,0 +1,12 @@
+class Meta(type):
+    def __new__(cls, name, bases, attrs):
+        uppercase_attrs = {}
+        for attr, value in attrs.items():
+            if not attr.startswith("__"):
+                uppercase_attrs[attr.upper()] = value
+        return super().__new__(cls, name, bases, uppercase_attrs)
+
+class MyClass(metaclass=Meta):
+    x = 10
+
+print(MyClass.X)
