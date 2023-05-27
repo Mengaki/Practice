@@ -1,0 +1,9 @@
+class CustomContextManager:
+    def __enter__(self):
+        print("Entering the context")
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("Exiting the context")
+
+with CustomContextManager():
+    print("Inside the context")
