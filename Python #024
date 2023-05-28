@@ -1,0 +1,15 @@
+from collections import Counter
+
+def compare_hands(hand1, hand2):
+    rank_counts1 = Counter([rank for rank, suit in hand1])
+    rank_counts2 = Counter([rank for rank, suit in hand2])
+
+    # Add logic to compare different poker hands
+    # ...
+
+    return "Hand comparison result"
+
+hand1 = [('Ace', 'Spades'), ('King', 'Hearts'), ('Queen', 'Spades'), ('Ace', 'Clubs'), ('10', 'Spades')]
+hand2 = [('King', 'Spades'), ('King', 'Hearts'), ('King', 'Clubs'), ('Ace', 'Clubs'), ('10', 'Spades')]
+result = compare_hands(hand1, hand2)
+print(result)
