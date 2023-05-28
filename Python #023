@@ -1,0 +1,28 @@
+from collections import Counter
+
+def rank_hand(hand):
+    ranks = [rank for rank, suit in hand]
+    rank_counts = Counter(ranks)
+
+    if len(set(ranks)) == 2:
+        # Four of a kind or Full House
+        if 4 in rank_counts.values():
+            return "Four of a Kind"
+        else:
+            return "Full House"
+    elif len(set(ranks)) == 3:
+        # Three of a kind or Two Pair
+        if 3 in rank_counts.values():
+            return "Three of a Kind"
+        else:
+            return "Two Pair"
+    elif len(set(ranks)) == 4:
+        # One Pair
+        return "One Pair"
+    elif len(set(ranks)) == 5:
+        # Straight, Flush, Straight Flush or High Card
+        return "Straight"  # Add logic for other hands
+
+hand = [('Ace', 'Spades'), ('King', 'Hearts'), ('Queen', 'Spades'), ('Ace', 'Clubs'), ('10', 'Spades')]
+result = rank_hand(hand)
+print(result)
