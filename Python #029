@@ -1,0 +1,15 @@
+import random
+
+def roll_dice():
+    min_value = 1
+    max_value = 6
+
+    while True:
+        roll = input('Roll the dice? (y/n): ')
+
+        if roll.lower() == 'y':
+            print(f'You rolled: {random.randint(min_value, max_value)}')
+        else:
+            break
+
+roll_dice()
