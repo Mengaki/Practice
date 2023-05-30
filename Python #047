@@ -1,0 +1,48 @@
+class FootballGame:
+    def __init__(self):
+        self.player_position = 0
+        self.ball_position = 50
+
+    def move_player_left(self):
+        self.player_position -= 1
+        self.check_collision()
+
+    def move_player_right(self):
+        self.player_position += 1
+        self.check_collision()
+
+    def check_collision(self):
+        if self.player_position == self.ball_position:
+            self.score_goal()
+
+    def score_goal(self):
+        print("GOAL!")
+
+    def print_field(self):
+        field = [' '] * 100
+        field[self.player_position] = 'P'
+        field[self.ball_position] = 'B'
+        print(''.join(field))
+
+    def play_game(self):
+        print("Welcome to the football game!")
+        print("Move the player using A (left) and D (right).")
+        print("Try to score a goal!")
+
+        while True:
+            self.print_field()
+
+            user_input = input("Enter your move: ").lower()
+            if user_input == 'a':
+                self.move_player_left()
+            elif user_input == 'd':
+                self.move_player_right()
+            elif user_input == 'quit':
+                print("Game over.")
+                break
+            else:
+                print("Invalid move. Try again.")
+
+# Example usage
+game = FootballGame()
+game.play_game()
