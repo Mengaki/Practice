@@ -1,0 +1,18 @@
+tasks = []
+
+def add_task(task):
+    tasks.append(task)
+
+def remove_task(task):
+    tasks.remove(task)
+
+def view_tasks():
+    for task in tasks:
+        print(task)
+
+# Example usage
+add_task("Buy groceries")
+add_task("Finish homework")
+view_tasks()
+remove_task("Buy groceries")
+view_tasks()
