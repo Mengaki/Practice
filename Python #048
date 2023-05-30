@@ -1,0 +1,36 @@
+import random
+
+class BasketballGame:
+    def __init__(self):
+        self.score = 0
+
+    def shoot_ball(self):
+        target = random.randint(1, 5)
+        guess = int(input("Enter your shot (1-5): "))
+
+        if guess == target:
+            self.score += 2
+            print("SWISH! You scored 2 points!")
+        else:
+            print("Missed! Better luck next time.")
+
+    def print_score(self):
+        print(f"Your current score is: {self.score}")
+
+    def play_game(self):
+        print("Welcome to the basketball shooting game!")
+        print("Try to score as many points as possible.")
+
+        while True:
+            self.print_score()
+
+            user_input = input("Press ENTER to shoot or type QUIT to exit: ").lower()
+            if user_input == 'quit':
+                print("Game over.")
+                break
+
+            self.shoot_ball()
+
+# Example usage
+game = BasketballGame()
+game.play_game()
