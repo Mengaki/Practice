@@ -1,0 +1,39 @@
+import random
+
+class YutNori:
+    def __init__(self, num_players):
+        self.num_players = num_players
+        self.board = [0] * num_players
+        self.current_player = 0
+
+    def throw_sticks(self):
+        sticks = []
+        for _ in range(4):
+            sticks.append(random.choice(['Do', 'Gae', 'Gul', 'Yut', 'Mo']))
+        return sticks
+
+    def move_piece(self, player_index, num_moves):
+        self.board[player_index] += num_moves
+
+    def play_game(self):
+        while True:
+            print(f"\nPlayer {self.current_player + 1}'s turn.")
+            input("Press Enter to throw the sticks...")
+            sticks = self.throw_sticks()
+            print(f"Sticks: {sticks}")
+            num_moves = sticks.count('Do')
+            num_moves += sticks.count('Gae') * 2
+            num_moves += sticks.count('Gul') * 3
+            num_moves += sticks.count('Yut') * 4
+            num_moves += sticks.count('Mo') * 5
+            self.move_piece(self.current_player, num_moves)
+            print(f"Player {self.current_player + 1} moved {num_moves} spaces.")
+            print(f"Player {self.current_player + 1}'s current position: {self.board[self.current_player]}")
+            if self.board[self.current_player] >= 20:
+                print(f"Player {self.current_player + 1} wins!")
+                break
+            self.current_player = (self.current_player + 1) % self.num_players
+
+# Example usage:
+game = YutNori(2)
+game.play_game()
