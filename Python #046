@@ -1,0 +1,26 @@
+import kivy
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+import requests
+
+class WeatherApp(App):
+    def build(self):
+        self.weather_label = Label(text="Fetching weather...", font_size=30)
+        layout = BoxLayout(orientation='vertical')
+        layout.add_widget(self.weather_label)
+        return layout
+
+    def on_start(self):
+        self.update_weather()
+
+    def update_weather(self):
+        api_key = "YOUR_API_KEY"
+        url = f"http://api.weatherapi.com/v1/current.json?key={api_key}&q=London"
+        response = requests.get(url)
+        data = response.json()
+        temperature = data["current"]["temp_c"]
+        condition = data["current"]["condition"]["text"]
+        self.weather_label.text = f"The current weather in London is {condition} with a temperature of {temperature}°C"
+
+WeatherApp().run()
