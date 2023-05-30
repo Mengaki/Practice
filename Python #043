@@ -1,0 +1,12 @@
+import requests
+
+def convert_currency(amount, from_currency, to_currency):
+    api_key = "YOUR_API_KEY"
+    url = f"https://api.currencyscoop.com/v1/convert?api_key={api_key}&from={from_currency}&to={to_currency}&amount={amount}"
+    response = requests.get(url)
+    data = response.json()
+    converted_amount = data["response"]["converted"]
+    print(f"{amount} {from_currency} is equal to {converted_amount} {to_currency}")
+
+# Example usage
+convert_currency(100, "USD", "EUR")
