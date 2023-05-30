@@ -1,0 +1,31 @@
+from moviepy.editor import VideoClip
+from moviepy.video.io.ffmpeg_writer import FFMPEG_VideoWriter
+
+# Define the parameters of the movie
+duration = 5  # Duration in seconds
+fps = 24  # Frames per second
+width = 640  # Width of the video
+height = 480  # Height of the video
+
+def make_frame(t):
+    # Create a frame based on the current time t
+    # You can use any image processing or drawing libraries to generate frames
+    # For simplicity, let's create a gradient that changes over time
+    r = int(255 * t / duration)
+    g = int(255 * (1 - t / duration))
+    b = int(255 * (t / duration) % 255)
+    frame = np.ones((height, width, 3), dtype=np.uint8) * (r, g, b)
+    return frame
+
+# Create a VideoClip object with the make_frame function
+video_clip = VideoClip(make_frame, duration=duration)
+
+# Set the fps, width, and height of the video
+video_clip = video_clip.set_fps(fps).set_size((width, height))
+
+# Define the output video file name and codec
+output_file = "movie.mp4"
+codec = "libx264"
+
+# Write the video clip to a file
+video_clip.write_videofile(output_file, codec=codec)
